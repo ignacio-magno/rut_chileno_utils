@@ -43,3 +43,9 @@ func TestWithoutDigitoVerificador(t *testing.T) {
 	response := builder.ConPuntos().ConGuion().SinDigitoVerificador().Build()
 	assert.Equal(t, "12.345.678", response)
 }
+
+func TestWithoutDigitoVerificador2(t *testing.T) {
+	builder := newBuilderRut("12345678-9")
+	response := builder.SinDigitoVerificador().Build()
+	assert.Equal(t, "12345678", response)
+}

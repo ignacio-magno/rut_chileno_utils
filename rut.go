@@ -7,7 +7,9 @@ import (
 )
 
 // Rut representa un rut chileno sin número ni guión.
-type Rut string
+type Rut struct {
+	rut string
+}
 
 func (r Rut) NewBuilder() BuilderRut {
 	return BuilderRut{
@@ -15,16 +17,18 @@ func (r Rut) NewBuilder() BuilderRut {
 	}
 }
 
-func NewRut(rut string) (*Rut, error) {
-	r := Rut(removeDot(rut))
-	if ok, err := checkRegex(string(r)); !ok {
-		return nil, fmt.Errorf("rut %s no cumple con el formato esperado: %s", rut, err)
+func NewRut(rut string) (Rut, error) {
+	r := Rut{
+		rut: removeDot(rut),
 	}
-	return &r, nil
+	if ok, err := checkRegex(r.rut); !ok {
+		return r, fmt.Errorf("rut %s no cumple con el formato esperado: %s", rut, err)
+	}
+	return r, nil
 }
 
 func (r Rut) DigitoVerificador() string {
-	return string((r)[len(r)-1:])
+	return r.rut[len(r.rut)-1:]
 }
 
 func removeDot(rut string) string {

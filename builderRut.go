@@ -26,17 +26,19 @@ func NewBuilderRut(rut Rut) BuilderRut {
 func (r BuilderRut) ConGuion() BuilderRut {
 	// set guion to last position
 	return BuilderRut{
-		Rut:       r.Rut[:len(r.Rut)-1] + "-" + r.Rut[len(r.Rut)-1:],
+		Rut: Rut{
+			rut: r.Rut.rut[:len(r.Rut.rut)-1] + "-" + r.Rut.rut[len(r.Rut.rut)-1:],
+		},
 		haveGuion: true,
 	}
 }
 
 func (r BuilderRut) Build() string {
-	return string(r.Rut)
+	return r.Rut.rut
 }
 
 func (r BuilderRut) ConPuntos() BuilderRut {
-	rut := string(r.Rut)
+	rut := r.Rut.rut
 
 	if r.haveGuion {
 		if len(rut) == 9 {
@@ -53,7 +55,9 @@ func (r BuilderRut) ConPuntos() BuilderRut {
 	}
 
 	return BuilderRut{
-		Rut:       Rut(rut),
+		Rut: Rut{
+			rut: rut,
+		},
 		haveGuion: r.haveGuion,
 		haveDots:  true,
 	}
@@ -61,9 +65,13 @@ func (r BuilderRut) ConPuntos() BuilderRut {
 
 func (r BuilderRut) SinDigitoVerificador() BuilderRut {
 	if r.haveGuion {
-		r.Rut = r.Rut[:len(r.Rut)-2]
+		r.Rut = Rut{
+			rut: r.Rut.rut[:len(r.Rut.rut)-2],
+		}
 	} else {
-		r.Rut = r.Rut[:len(r.Rut)-1]
+		r.Rut = Rut{
+			rut: r.Rut.rut[:len(r.Rut.rut)-1],
+		}
 	}
 	r.HaveDigitoVerificador = false
 	return r
