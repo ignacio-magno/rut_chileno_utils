@@ -9,9 +9,9 @@ import (
 // Rut representa un rut chileno sin número ni guión.
 type Rut string
 
-func (r *Rut) NewBuilder() BuilderRut {
+func (r Rut) NewBuilder() BuilderRut {
 	return BuilderRut{
-		Rut: *r,
+		Rut: r,
 	}
 }
 
@@ -23,8 +23,8 @@ func NewRut(rut string) (*Rut, error) {
 	return &r, nil
 }
 
-func (r *Rut) DigitoVerificador() string {
-	return string((*r)[len(*r)-1:])
+func (r Rut) DigitoVerificador() string {
+	return string((r)[len(r)-1:])
 }
 
 func removeDot(rut string) string {
