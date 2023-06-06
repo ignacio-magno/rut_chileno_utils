@@ -1,4 +1,4 @@
-module rut_chileno_utils
+module github.com/ignacio-magno/rut_chileno_utils
 
 go 1.20
 
