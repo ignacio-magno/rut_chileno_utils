@@ -23,6 +23,10 @@ func NewRut(rut string) (*Rut, error) {
 	return &r, nil
 }
 
+func (r *Rut) DigitoVerificador() string {
+	return string((*r)[len(*r)-1:])
+}
+
 func removeDot(rut string) string {
 	rut = strings.Replace(rut, ".", "", -1)
 	rut = strings.ToLower(rut)
