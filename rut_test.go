@@ -1,4 +1,4 @@
-package rut_chileno
+package rut_chileno_utils
 
 import (
 	"github.com/stretchr/testify/assert"

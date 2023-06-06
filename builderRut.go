@@ -1,4 +1,4 @@
-package rut_chileno
+package rut_chileno_utils
 
 type BuilderRut struct {
 	Rut
