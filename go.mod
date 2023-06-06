@@ -1,4 +1,4 @@
-module rut_chileno
+module rut_chileno_utils
 
 go 1.20
 
